@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Our Memories 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+
+body{
+  min-height:100vh;
+  background:linear-gradient(270deg,#ff9a9e,#fad0c4,#ffd1ff);
+  background-size:600% 600%;
+  animation:bg 12s ease infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+  transition:.5s;
+}
+
+@keyframes bg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.box{
+  background:rgba(255,255,255,.96);
+  padding:45px;
+  border-radius:35px;
+  box-shadow:0 35px 70px rgba(0,0,0,.3);
+  max-width:520px;
+  text-align:center;
+  z-index:2;
+  animation:fade 1.2s;
+}
+
+h1{color:#ff2e63;margin-bottom:10px}
+
+#typing{
+  font-size:17px;
+  color:#444;
+  min-height:60px;
+  margin-bottom:20px;
+}
+
+.memories{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.card{
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);
+  color:white;
+  padding:20px;
+  border-radius:22px;
+  font-size:15px;
+  cursor:pointer;
+  transition:.3s;
+  box-shadow:0 10px 25px rgba(0,0,0,.2);
+}
+
+.card:hover{transform:translateY(-6px) scale(1.05)}
+
+.note{
+  display:none;
+  margin:15px 0;
+  color:#ff2e63;
+  font-weight:600;
+  font-size:17px;
+}
+
+#line{font-size:18px;color:#333;min-height:40px}
+#question{margin-top:10px;font-size:17px;color:#ff2e63;font-weight:600}
+
+.buttons{
+  display:flex;
+  justify-content:space-between;
+  margin-top:25px;
+}
+
+button{
+  padding:12px 28px;
+  border:none;
+  border-radius:40px;
+  background:#ff2e63;
+  color:white;
+  font-size:15px;
+  cursor:pointer;
+  box-shadow:0 0 25px rgba(255,46,99,.7);
+  transition:.3s;
+}
+
+button:hover{transform:scale(1.08)}
+
+.heart,.rose{
+  position:fixed;
+  top:-40px;
+  font-size:26px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:spark 1s forwards;
+}
+
+#night{
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#333;
+  color:white;
+  cursor:pointer;
+  z-index:5;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+@keyframes spark{
+  to{transform:translateY(-30px);opacity:0}
+}
+@keyframes fade{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1}
+}
+</style>
+</head>
+
+<body>
+
+<div id="night">🌙</div>
+
+<div class="box">
+  <h1>Our Little Memories 💞</h1>
+  <p id="typing"></p>
+
+  <div class="memories">
+    <div class="card" onclick="showNote(0)">🌸 First Smile</div>
+    <div class="card" onclick="showNote(1)">💬 Late Talks</div>
+    <div class="card" onclick="showNote(2)">✨ Small Moments</div>
+    <div class="card" onclick="showNote(3)">💖 You & Me</div>
+  </div>
+
+  <div class="note" id="note"></div>
+
+  <p id="line"></p>
+  <p id="question"></p>
+
+  <div class="buttons">
+    <button onclick="back()">⬅ Back</button>
+    <button onclick="next()">Next Surprise 💍</button>
+  </div>
+</div>
+
+<script>
+// typing intro
+const intro="Some memories don’t fade… they live forever in the heart 💗";
+let t=0;
+function typeIntro(){
+  if(t<intro.length){
+    typing.innerHTML+=intro[t++];
+    setTimeout(typeIntro,55);
+  }
+}
+typeIntro();
+
+// memory notes
+const notes=[
+ "Your smile became my favorite memory 🌸",
+ "Talking to you always feels like home 💬",
+ "Even small moments with you feel special ✨",
+ "You are my comfort, my happiness, my always 💖"
+];
+function showNote(i){
+  note.style.display="block";
+  note.innerHTML=notes[i];
+  burst();
+}
+
+// romantic lines + questions
+const lines=[
+ "Manahil, your smile is my favorite view 💖",
+ "Every moment with you feels magical ✨",
+ "You are my calm in every storm 💕",
+ "My heart feels safe with you ❤️"
+];
+const questions=[
+ "What memory of us makes you smile the most? 💌",
+ "What do you feel when you think of me? 💖",
+ "What makes us special together? ✨",
+ "Do you believe we’re meant to be? 💕"
+];
+
+let li=0,ci=0,qi=0;
+setInterval(()=>{
+  if(ci<lines[li].length){
+    line.innerText+=lines[li][ci++];
+  }else{
+    setTimeout(()=>{
+      line.innerText="";
+      ci=0;
+      li=(li+1)%lines.length;
+      question.innerText=questions[qi];
+      qi=(qi+1)%questions.length;
+    },1500);
+  }
+},80);
+
+// effects
+setInterval(()=>{
+  let el=document.createElement('div');
+  el.className=Math.random()>.5?'heart':'rose';
+  el.innerText=Math.random()>.5?'💗':'🌹';
+  el.style.left=Math.random()*100+'vw';
+  el.style.animationDuration=(3+Math.random()*3)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=>el.remove(),6000);
+},350);
+
+document.addEventListener('mousemove',e=>{
+  let s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=e.clientX+'px';
+  s.style.top=e.clientY+'px';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1000);
+});
+
+function burst(){
+  for(let i=0;i<10;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.innerText='💖';
+    h.style.left=45+Math.random()*10+'vw';
+    h.style.animationDuration='2s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),2000);
+  }
+}
+
+// night mode
+let dark=false;
+night.onclick=()=>{
+  dark=!dark;
+  document.body.style.background=dark
+  ?'linear-gradient(135deg,#0f2027,#203a43,#2c5364)'
+  :'linear-gradient(270deg,#ff9a9e,#fad0c4,#ffd1ff)';
+};
+
+// navigation
+function back(){location.href="index.html";}
+function next(){location.href="proposal.html";}
+</script>
+
+</body>
+</html>
