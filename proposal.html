@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Forever Proposal 💖</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
+
+body{
+  height:100vh;
+  background:linear-gradient(270deg,#fbc2eb,#a6c1ee,#fad0c4,#ffd1ff);
+  background-size:700% 700%;
+  animation:bg 14s ease infinite;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+@keyframes bg{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+#night{
+  position:fixed;
+  top:18px;
+  right:18px;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#333;
+  color:white;
+  cursor:pointer;
+  z-index:10;
+  box-shadow:0 0 15px rgba(0,0,0,.4);
+}
+
+.box{
+  background:rgba(255,255,255,.98);
+  padding:55px;
+  border-radius:40px;
+  text-align:center;
+  box-shadow:0 40px 90px rgba(0,0,0,.35);
+  max-width:520px;
+  position:relative;
+  z-index:2;
+  animation:fade 1.2s;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:translateY(50px) scale(.95)}
+  to{opacity:1}
+}
+
+.ring{
+  font-size:72px;
+  animation:pulse 1.3s infinite;
+  margin-bottom:12px;
+}
+
+@keyframes pulse{
+  50%{transform:scale(1.35) rotate(6deg)}
+}
+
+h1{
+  color:#ff2e63;
+  font-size:26px;
+  margin-bottom:10px;
+}
+
+#question{
+  font-size:18px;
+  color:#ff2e63;
+  font-weight:600;
+  min-height:30px;
+}
+
+.buttons{margin-top:25px}
+
+button{
+  margin:10px;
+  padding:15px 38px;
+  border:none;
+  border-radius:50px;
+  font-size:16px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.yes{
+  background:#ff2e63;
+  color:white;
+  box-shadow:0 0 35px rgba(255,46,99,.9);
+  animation:glow 2s infinite;
+}
+
+@keyframes glow{
+  50%{box-shadow:0 0 60px rgba(255,46,99,1)}
+}
+
+.no{
+  background:#eee;
+  position:relative;
+}
+
+button:hover{transform:scale(1.1)}
+
+#msg{
+  margin-top:25px;
+  font-size:22px;
+  color:#ff2e63;
+  font-weight:600;
+  opacity:0;
+  transform:scale(.8);
+  transition:1s;
+}
+
+.rose,.heart{
+  position:fixed;
+  top:-50px;
+  font-size:30px;
+  animation:fall linear forwards;
+  pointer-events:none;
+}
+
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:spark 1s forwards;
+}
+
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg);opacity:0}
+}
+
+@keyframes spark{
+  to{transform:translateY(-30px);opacity:0}
+}
+</style>
+</head>
+
+<body>
+
+<div id="night">🌙</div>
+
+<div class="box">
+  <div class="ring">💍</div>
+  <h1>Manahil, Will You Be Mine Forever?</h1>
+  <p id="question"></p>
+
+  <div class="buttons">
+    <button class="yes" onclick="yes()">Yes Adeel 💖</button>
+    <button class="no" onmouseover="move(this)">No 🙈</button>
+  </div>
+
+  <div id="msg">My heart is officially yours now ❤️✨</div>
+</div>
+
+<script>
+// sparkle cursor
+document.addEventListener('mousemove',e=>{
+  let s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=e.clientX+'px';
+  s.style.top=e.clientY+'px';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1000);
+});
+
+// floating roses & hearts
+setInterval(()=>{
+  let r=document.createElement('div');
+  r.className=Math.random()>.5?'rose':'heart';
+  r.innerText=Math.random()>.5?'🌹':'💖';
+  r.style.left=Math.random()*100+'vw';
+  r.style.animationDuration=(3+Math.random()*3)+'s';
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),6000);
+},400);
+
+// night mode
+let dark=false;
+night.onclick=()=>{
+  dark=!dark;
+  document.body.style.background=dark
+   ?'linear-gradient(135deg,#0f2027,#203a43,#2c5364)'
+   :'linear-gradient(270deg,#fbc2eb,#a6c1ee,#fad0c4,#ffd1ff)';
+};
+
+// romantic + funny questions
+const questions=[
+ "Do you feel butterflies too? 🦋",
+ "Should we annoy each other forever? 😄",
+ "Can I steal all your smiles? 💕",
+ "Ready for endless memories? ✨",
+ "Is your heart saying yes already? 💖"
+];
+let qi=0;
+setInterval(()=>{
+  question.innerText=questions[qi];
+  qi=(qi+1)%questions.length;
+},3500);
+
+// YES mega heart blast
+function yes(){
+  msg.style.opacity=1;
+  msg.style.transform='scale(1)';
+
+  // mega explosion of hearts
+  for(let i=0;i<150;i++){
+    setTimeout(()=>{
+      let h=document.createElement('div');
+      h.className=Math.random()>.5?'heart':'rose';
+      h.innerText=Math.random()>.5?'💖':'🌹';
+      h.style.left=Math.random()*100+'vw';
+      h.style.fontSize=(20+Math.random()*50)+'px'; // bigger hearts
+      h.style.animationDuration=(1+Math.random()*3)+'s'; 
+      document.body.appendChild(h);
+      setTimeout(()=>h.remove(),4000);
+    },i*20);
+  }
+}
+
+// NO escape
+function move(b){
+  b.style.position='absolute';
+  b.style.top=Math.random()*70+'%';
+  b.style.left=Math.random()*70+'%';
+}
+</script>
+
+</body>
+</html>
