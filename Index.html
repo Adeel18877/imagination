@@ -1,0 +1,73 @@
+<!DOCTYPE html>  <html>  
+<head>  
+<meta charset="UTF-8">  
+<title>For Manahil ❤️</title>  
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">  <style>  
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}  
+body{  
+  height:100vh;  
+  background:linear-gradient(135deg,#ff758c,#ff7eb3);  
+  display:flex;  
+  justify-content:center;  
+  align-items:center;  
+  overflow:hidden;  
+}  
+.card{  
+  background:#fff;  
+  padding:45px;  
+  border-radius:30px;  
+  text-align:center;  
+  box-shadow:0 30px 60px rgba(0,0,0,.3);  
+  animation:fade 1.5s;  
+  z-index:2;  
+}  
+h1{color:#ff2e63}  
+p{margin:15px 0;color:#444;font-size:18px}  
+button{  
+  padding:14px 36px;  
+  border:none;  
+  border-radius:40px;  
+  background:#ff2e63;  
+  color:#fff;  
+  font-size:16px;  
+  cursor:pointer;  
+}  
+.rose{position:fixed;top:-50px;font-size:28px;animation:fall linear forwards}  
+.sparkle{position:fixed;width:6px;height:6px;background:white;border-radius:50%;animation:spark 1s forwards}  
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}  
+@keyframes fade{from{opacity:0;transform:translateY(40px)}to{opacity:1}}  
+@keyframes spark{to{transform:translateY(-30px);opacity:0}}  
+</style>  </head>  <body>  <div class="card">  
+  <h1>Dear Manahil 💖</h1>  
+  <p>I made something special… only for you</p>  
+  <button onclick="go()">Open My Heart 💌</button>  
+</div>  <audio id="bgm" loop>  
+  <source src="romantic.mp3" type="audio/mpeg">  
+</audio>  <script>  
+document.body.onclick=()=>bgm.play();  
+  
+function go(){  
+  document.body.style.opacity=0;  
+  setTimeout(()=>location.href='memories.html',600);  
+}  
+  
+setInterval(()=>{  
+  let r=document.createElement('div');  
+  r.className='rose';  
+  r.innerText='🌹';  
+  r.style.left=Math.random()*100+'vw';  
+  r.style.animationDuration=(3+Math.random()*3)+'s';  
+  document.body.appendChild(r);  
+  setTimeout(()=>r.remove(),6000);  
+},300);  
+  
+document.addEventListener('mousemove',e=>{  
+  let s=document.createElement('div');  
+  s.className='sparkle';  
+  s.style.left=e.clientX+'px';  
+  s.style.top=e.clientY+'px';  
+  document.body.appendChild(s);  
+  setTimeout(()=>s.remove(),1000);  
+});  
+</script>  </body>  
+</html>  
