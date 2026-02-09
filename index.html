@@ -1,73 +1,215 @@
-<!DOCTYPE html>  <html>  
-<head>  
-<meta charset="UTF-8">  
-<title>For Manahil ❤️</title>  
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">  <style>  
-*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}  
-body{  
-  height:100vh;  
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);  
-  display:flex;  
-  justify-content:center;  
-  align-items:center;  
-  overflow:hidden;  
-}  
-.card{  
-  background:#fff;  
-  padding:45px;  
-  border-radius:30px;  
-  text-align:center;  
-  box-shadow:0 30px 60px rgba(0,0,0,.3);  
-  animation:fade 1.5s;  
-  z-index:2;  
-}  
-h1{color:#ff2e63}  
-p{margin:15px 0;color:#444;font-size:18px}  
-button{  
-  padding:14px 36px;  
-  border:none;  
-  border-radius:40px;  
-  background:#ff2e63;  
-  color:#fff;  
-  font-size:16px;  
-  cursor:pointer;  
-}  
-.rose{position:fixed;top:-50px;font-size:28px;animation:fall linear forwards}  
-.sparkle{position:fixed;width:6px;height:6px;background:white;border-radius:50%;animation:spark 1s forwards}  
-@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}  
-@keyframes fade{from{opacity:0;transform:translateY(40px)}to{opacity:1}}  
-@keyframes spark{to{transform:translateY(-30px);opacity:0}}  
-</style>  </head>  <body>  <div class="card">  
-  <h1>Dear Manahil 💖</h1>  
-  <p>I made something special… only for you</p>  
-  <button onclick="go()">Open My Heart 💌</button>  
-</div>  <audio id="bgm" loop>  
-  <source src="romantic.mp3" type="audio/mpeg">  
-</audio>  <script>  
-document.body.onclick=()=>bgm.play();  
-  
-function go(){  
-  document.body.style.opacity=0;  
-  setTimeout(()=>location.href='memories.html',600);  
-}  
-  
-setInterval(()=>{  
-  let r=document.createElement('div');  
-  r.className='rose';  
-  r.innerText='🌹';  
-  r.style.left=Math.random()*100+'vw';  
-  r.style.animationDuration=(3+Math.random()*3)+'s';  
-  document.body.appendChild(r);  
-  setTimeout(()=>r.remove(),6000);  
-},300);  
-  
-document.addEventListener('mousemove',e=>{  
-  let s=document.createElement('div');  
-  s.className='sparkle';  
-  s.style.left=e.clientX+'px';  
-  s.style.top=e.clientY+'px';  
-  document.body.appendChild(s);  
-  setTimeout(()=>s.remove(),1000);  
-});  
-</script>  </body>  
-</html>  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Manahil ❤️</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif}
+
+body{
+  height:100vh;
+  background:radial-gradient(circle at top,#ff9ab5,#ff4d79,#ff1e56);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  overflow:hidden;
+  color:white;
+}
+
+/* HEADING (NO DIV) */
+h1{
+  font-size:74px;
+  font-weight:700;
+  margin-bottom:20px;
+  animation:tripleGlow 2s infinite alternate;
+}
+
+/* UPPER DIV */
+.top{
+  max-width:850px;
+  padding:35px;
+  animation:fadeUp 2s ease;
+}
+
+.top h2{
+  font-size:36px;
+  font-weight:500;
+  text-shadow:0 0 15px #ffd1dc;
+}
+
+#typeText{
+  margin-top:22px;
+  font-size:23px;
+  line-height:1.7;
+  opacity:.95;
+  min-height:120px;
+}
+
+/* LOWER DIV */
+.bottom{
+  margin-top:45px;
+}
+
+.bottom a{
+  display:inline-block;
+  padding:20px 60px;
+  background:white;
+  color:#ff2e63;
+  border-radius:70px;
+  font-size:22px;
+  font-weight:600;
+  text-decoration:none;
+  animation:heartbeat 1.6s infinite;
+  box-shadow:0 0 40px rgba(255,255,255,.9);
+}
+
+.bottom a:hover{transform:scale(1.12)}
+
+/* EFFECTS */
+.rose,.heart,.wave{
+  position:fixed;
+  pointer-events:none;
+}
+
+.rose{
+  top:-40px;
+  font-size:32px;
+  animation:fall linear forwards;
+}
+
+.heart{
+  font-size:26px;
+  animation:floatUp 4s forwards;
+}
+
+.sparkle{
+  position:fixed;
+  width:6px;
+  height:6px;
+  background:white;
+  border-radius:50%;
+  animation:spark 1s forwards;
+}
+
+.wave{
+  width:20px;
+  height:20px;
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  animation:wave 2s forwards;
+}
+
+/* ANIMATIONS */
+@keyframes fall{to{transform:translateY(110vh) rotate(360deg)}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(40px)}to{opacity:1}}
+@keyframes heartbeat{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@keyframes floatUp{to{opacity:0;transform:translateY(-140px)}}
+@keyframes spark{to{transform:translateY(-30px);opacity:0}}
+@keyframes wave{to{transform:scale(12);opacity:0}}
+@keyframes tripleGlow{
+  from{text-shadow:0 0 10px #fff,0 0 30px #ffb3c6}
+  to{text-shadow:0 0 25px #fff,0 0 60px #ffd1dc,0 0 90px #ff8fab}
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADING -->
+<h1>Manahil ❤️</h1>
+
+<!-- UPPER DIV -->
+<div class="top">
+  <h2>You are the feeling my heart never learned to hide…</h2>
+  <p id="typeText"></p>
+</div>
+
+<!-- LOWER DIV -->
+<div class="bottom">
+  <a href="memories.html" onclick="megaHeartBlast()">Open My Heart 💌</a>
+</div>
+
+<audio id="bgm" loop>
+  <source src="romantic.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+document.body.onclick=()=>bgm.play();
+
+/* AUTO TYPING TEXT */
+const lines=[
+  "Some people enter your life quietly 🌙",
+  "but their presence becomes your favorite place 💖",
+  "Every beat of my heart",
+  "knows exactly where it belongs…",
+  "with you ✨"
+];
+let l=0,c=0,box=document.getElementById("typeText");
+
+function type(){
+  if(l<lines.length){
+    if(c<lines[l].length){
+      box.innerHTML+=lines[l][c++];
+      setTimeout(type,55);
+    }else{
+      box.innerHTML+="<br>";
+      l++; c=0;
+      setTimeout(type,600);
+    }
+  }
+}
+type();
+
+/* ROSE RAIN */
+setInterval(()=>{
+  let r=document.createElement('div');
+  r.className='rose';
+  r.innerText='🌹';
+  r.style.left=Math.random()*100+'vw';
+  r.style.animationDuration=(3+Math.random()*3)+'s';
+  document.body.appendChild(r);
+  setTimeout(()=>r.remove(),6000);
+},200);
+
+/* CURSOR MAGIC */
+document.addEventListener('mousemove',e=>{
+  let s=document.createElement('div');
+  s.className='sparkle';
+  s.style.left=e.clientX+'px';
+  s.style.top=e.clientY+'px';
+  document.body.appendChild(s);
+  setTimeout(()=>s.remove(),1000);
+});
+
+/* BACKGROUND WAVES */
+setInterval(()=>{
+  let w=document.createElement('div');
+  w.className='wave';
+  w.style.left=Math.random()*100+'vw';
+  w.style.top=Math.random()*100+'vh';
+  document.body.appendChild(w);
+  setTimeout(()=>w.remove(),2000);
+},500);
+
+/* MEGA HEART BLAST */
+function megaHeartBlast(){
+  for(let i=0;i<60;i++){
+    let h=document.createElement('div');
+    h.className='heart';
+    h.innerText='❤️';
+    h.style.left=(50+(Math.random()*40-20))+'vw';
+    h.style.top='70vh';
+    h.style.animationDuration=(2+Math.random()*2)+'s';
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),4000);
+  }
+}
+</script>
+
+</body>
+</html>
