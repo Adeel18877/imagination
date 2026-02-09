@@ -3,80 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <title>Our Memories 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;800&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
 body{
   min-height:100vh;
-  background:linear-gradient(270deg,#ff9a9e,#fad0c4,#ffd1ff);
-  background-size:600% 600%;
-  animation:bg 12s ease infinite;
+  background:radial-gradient(circle at top,#ffd1dc,#ff7aa2,#ff2e63);
+  background-size:400% 400%;
+  animation:bgMove 12s ease infinite;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
-  transition:.5s;
 }
 
-@keyframes bg{
+@keyframes bgMove{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
+/* MAIN BOX */
 .box{
-  background:rgba(255,255,255,.96);
-  padding:45px;
-  border-radius:35px;
-  box-shadow:0 35px 70px rgba(0,0,0,.3);
-  max-width:520px;
+  background:rgba(255,255,255,.95);
+  padding:50px;
+  border-radius:40px;
+  max-width:560px;
   text-align:center;
-  z-index:2;
-  animation:fade 1.2s;
+  z-index:5;
+  box-shadow:
+    0 0 30px #fff,
+    0 0 80px rgba(255,46,99,.6),
+    0 0 140px rgba(255,46,99,.4);
+  animation:pulseBox 3s infinite;
 }
 
-h1{color:#ff2e63;margin-bottom:10px}
+@keyframes pulseBox{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.03)}
+}
+
+h1{
+  color:#ff2e63;
+  font-size:32px;
+  text-shadow:0 0 20px #ff7aa2;
+}
 
 #typing{
-  font-size:17px;
-  color:#444;
+  margin:15px 0;
+  font-size:18px;
   min-height:60px;
-  margin-bottom:20px;
 }
 
 .memories{
   display:grid;
   grid-template-columns:1fr 1fr;
   gap:15px;
-  margin-bottom:20px;
+  margin:20px 0;
 }
 
 .card{
-  background:linear-gradient(135deg,#ff758c,#ff7eb3);
-  color:white;
-  padding:20px;
-  border-radius:22px;
+  padding:22px;
+  border-radius:24px;
   font-size:15px;
+  background:linear-gradient(135deg,#ff5f8f,#ff2e63);
+  color:white;
   cursor:pointer;
-  transition:.3s;
-  box-shadow:0 10px 25px rgba(0,0,0,.2);
+  box-shadow:0 0 25px rgba(255,46,99,.8);
+  transition:.4s;
 }
 
-.card:hover{transform:translateY(-6px) scale(1.05)}
+.card:hover{
+  transform:scale(1.12) rotate(-1deg);
+  box-shadow:0 0 50px rgba(255,46,99,1);
+}
 
 .note{
   display:none;
   margin:15px 0;
-  color:#ff2e63;
   font-weight:600;
-  font-size:17px;
+  color:#ff2e63;
+  text-shadow:0 0 10px #ffd1dc;
 }
 
-#line{font-size:18px;color:#333;min-height:40px}
-#question{margin-top:10px;font-size:17px;color:#ff2e63;font-weight:600}
+#line{
+  font-size:18px;
+  min-height:40px;
+}
+#question{
+  color:#ff2e63;
+  font-weight:600;
+  margin-top:8px;
+}
 
+/* BUTTONS */
 .buttons{
   display:flex;
   justify-content:space-between;
@@ -84,57 +106,66 @@ h1{color:#ff2e63;margin-bottom:10px}
 }
 
 button{
-  padding:12px 28px;
+  padding:14px 32px;
   border:none;
-  border-radius:40px;
+  border-radius:50px;
   background:#ff2e63;
   color:white;
   font-size:15px;
   cursor:pointer;
-  box-shadow:0 0 25px rgba(255,46,99,.7);
-  transition:.3s;
+  box-shadow:0 0 35px rgba(255,46,99,.9);
+  animation:beat 1.6s infinite;
 }
 
-button:hover{transform:scale(1.08)}
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.15)}
+}
 
-.heart,.rose{
+/* PARTICLES */
+.heart,.spark,.orb{
   position:fixed;
-  top:-40px;
-  font-size:26px;
-  animation:fall linear forwards;
   pointer-events:none;
 }
 
-.sparkle{
-  position:fixed;
-  width:6px;
-  height:6px;
+.heart{
+  font-size:26px;
+  animation:floatUp 4s forwards;
+}
+
+@keyframes floatUp{
+  to{transform:translateY(-140px) rotate(360deg);opacity:0}
+}
+
+.spark{
+  width:6px;height:6px;
   background:white;
   border-radius:50%;
   animation:spark 1s forwards;
 }
 
+@keyframes spark{
+  to{transform:translateY(-30px);opacity:0}
+}
+
+.orb{
+  width:8px;height:8px;
+  border-radius:50%;
+  background:rgba(255,255,255,.6);
+  box-shadow:0 0 15px white;
+}
+
+/* NIGHT TOGGLE */
 #night{
   position:fixed;
   top:20px;
   right:20px;
+  background:#111;
+  color:white;
   padding:8px 14px;
   border-radius:20px;
-  background:#333;
-  color:white;
   cursor:pointer;
-  z-index:5;
-}
-
-@keyframes fall{
-  to{transform:translateY(110vh) rotate(360deg);opacity:0}
-}
-@keyframes spark{
-  to{transform:translateY(-30px);opacity:0}
-}
-@keyframes fade{
-  from{opacity:0;transform:translateY(40px)}
-  to{opacity:1}
+  z-index:10;
 }
 </style>
 </head>
@@ -143,7 +174,7 @@ button:hover{transform:scale(1.08)}
 
 <div id="night">🌙</div>
 
-<div class="box">
+<div class="box" id="box">
   <h1>Our Little Memories 💞</h1>
   <p id="typing"></p>
 
@@ -161,108 +192,108 @@ button:hover{transform:scale(1.08)}
 
   <div class="buttons">
     <button onclick="back()">⬅ Back</button>
-    <button onclick="next()">Next Surprise 💍</button>
+    <button onclick="next()">Ghulami 💖</button>
   </div>
 </div>
 
 <script>
-// typing intro
-const intro="Some memories don’t fade… they live forever in the heart 💗";
-let t=0;
-function typeIntro(){
-  if(t<intro.length){
-    typing.innerHTML+=intro[t++];
-    setTimeout(typeIntro,55);
+/* INTRO TYPE */
+const intro="Some memories don’t fade… they become part of the soul 💗";
+let i=0;
+(function type(){
+  if(i<intro.length){
+    typing.innerHTML+=intro[i++];
+    setTimeout(type,50);
   }
-}
-typeIntro();
+})();
 
-// memory notes
+/* NOTES */
 const notes=[
- "Your smile became my favorite memory 🌸",
- "Talking to you always feels like home 💬",
- "Even small moments with you feel special ✨",
- "You are my comfort, my happiness, my always 💖"
+ "Your smile changed everything 🌸",
+ "Late talks that felt like forever 💬",
+ "Small moments that mean everything ✨",
+ "You are my favorite feeling 💖"
 ];
-function showNote(i){
+function showNote(n){
   note.style.display="block";
-  note.innerHTML=notes[i];
-  burst();
+  note.innerText=notes[n];
+  megaBurst();
 }
 
-// romantic lines + questions
+/* LINES */
 const lines=[
- "Manahil, your smile is my favorite view 💖",
- "Every moment with you feels magical ✨",
- "You are my calm in every storm 💕",
- "My heart feels safe with you ❤️"
+ "Manahil, you feel like home 💖",
+ "My heart chose you silently ✨",
+ "With you, everything feels right ❤️",
+ "You are my always 💞"
 ];
 const questions=[
- "What memory of us makes you smile the most? 💌",
- "What do you feel when you think of me? 💖",
- "What makes us special together? ✨",
- "Do you believe we’re meant to be? 💕"
+ "What memory of us do you love most?",
+ "What makes us special?",
+ "Can you feel my heart here?",
+ "Do you believe in forever?"
 ];
-
-let li=0,ci=0,qi=0;
+let l=0,c=0,q=0;
 setInterval(()=>{
-  if(ci<lines[li].length){
-    line.innerText+=lines[li][ci++];
+  if(c<lines[l].length){
+    line.innerText+=lines[l][c++];
   }else{
     setTimeout(()=>{
       line.innerText="";
-      ci=0;
-      li=(li+1)%lines.length;
-      question.innerText=questions[qi];
-      qi=(qi+1)%questions.length;
-    },1500);
+      c=0;
+      l=(l+1)%lines.length;
+      question.innerText=questions[q];
+      q=(q+1)%questions.length;
+    },1600);
   }
 },80);
 
-// effects
+/* HEART RAIN */
 setInterval(()=>{
-  let el=document.createElement('div');
-  el.className=Math.random()>.5?'heart':'rose';
-  el.innerText=Math.random()>.5?'💗':'🌹';
-  el.style.left=Math.random()*100+'vw';
-  el.style.animationDuration=(3+Math.random()*3)+'s';
-  document.body.appendChild(el);
-  setTimeout(()=>el.remove(),6000);
-},350);
+  let h=document.createElement('div');
+  h.className='heart';
+  h.innerText=Math.random()>.5?'💖':'🌹';
+  h.style.left=Math.random()*100+'vw';
+  h.style.top='90vh';
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),4000);
+},400);
 
+/* CURSOR MAGIC */
 document.addEventListener('mousemove',e=>{
   let s=document.createElement('div');
-  s.className='sparkle';
+  s.className='spark';
   s.style.left=e.clientX+'px';
   s.style.top=e.clientY+'px';
   document.body.appendChild(s);
   setTimeout(()=>s.remove(),1000);
 });
 
-function burst(){
-  for(let i=0;i<10;i++){
+/* MEGA BURST */
+function megaBurst(){
+  for(let k=0;k<25;k++){
     let h=document.createElement('div');
     h.className='heart';
-    h.innerText='💖';
+    h.innerText='💗';
     h.style.left=45+Math.random()*10+'vw';
-    h.style.animationDuration='2s';
+    h.style.top='60vh';
     document.body.appendChild(h);
-    setTimeout(()=>h.remove(),2000);
+    setTimeout(()=>h.remove(),4000);
   }
 }
 
-// night mode
+/* NIGHT MODE */
 let dark=false;
 night.onclick=()=>{
   dark=!dark;
   document.body.style.background=dark
-  ?'linear-gradient(135deg,#0f2027,#203a43,#2c5364)'
-  :'linear-gradient(270deg,#ff9a9e,#fad0c4,#ffd1ff)';
+  ?'radial-gradient(circle,#0f2027,#203a43,#2c5364)'
+  :'radial-gradient(circle at top,#ffd1dc,#ff7aa2,#ff2e63)';
 };
 
-// navigation
-function back(){location.href="index.html";}
-function next(){location.href="proposal.html";}
+/* NAVIGATION */
+function back(){location.href="index.html"}
+function next(){location.href="ghulam.html"}  // ← Updated
 </script>
 
 </body>
