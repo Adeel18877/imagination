@@ -3,28 +3,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Forever Proposal 💖</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600;700&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins}
 
 body{
   height:100vh;
-  background:linear-gradient(270deg,#fbc2eb,#a6c1ee,#fad0c4,#ffd1ff);
-  background-size:700% 700%;
-  animation:bg 14s ease infinite;
+  background:linear-gradient(270deg,#ffb6c1,#ff69b4,#ff1493,#ff87a2);
+  background-size:800% 800%;
+  animation:bg 20s ease infinite;
   display:flex;
   justify-content:center;
   align-items:center;
   overflow:hidden;
 }
 
+/* BACKGROUND ANIMATION */
 @keyframes bg{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
+/* NIGHT TOGGLE */
 #night{
   position:fixed;
   top:18px;
@@ -35,54 +37,71 @@ body{
   color:white;
   cursor:pointer;
   z-index:10;
-  box-shadow:0 0 15px rgba(0,0,0,.4);
+  box-shadow:0 0 20px rgba(0,0,0,.5);
 }
 
+/* MAIN BOX */
 .box{
-  background:rgba(255,255,255,.98);
-  padding:55px;
-  border-radius:40px;
+  background:rgba(255,255,255,.95);
+  padding:60px;
+  border-radius:50px;
   text-align:center;
-  box-shadow:0 40px 90px rgba(0,0,0,.35);
-  max-width:520px;
+  box-shadow:0 40px 120px rgba(255,46,99,.5);
+  max-width:560px;
   position:relative;
   z-index:2;
-  animation:fade 1.2s;
+  animation:fade 1.5s;
 }
 
 @keyframes fade{
-  from{opacity:0;transform:translateY(50px) scale(.95)}
+  from{opacity:0;transform:translateY(50px) scale(.9)}
   to{opacity:1}
 }
 
+/* RING ICON */
 .ring{
-  font-size:72px;
-  animation:pulse 1.3s infinite;
+  font-size:90px;
+  animation:pulse 1.2s infinite alternate;
   margin-bottom:12px;
 }
 
 @keyframes pulse{
-  50%{transform:scale(1.35) rotate(6deg)}
+  0%{transform:scale(1)}
+  50%{transform:scale(1.5) rotate(6deg)}
+  100%{transform:scale(1)}
 }
 
+/* HEADING */
 h1{
-  color:#ff2e63;
-  font-size:26px;
+  color:#ff1493;
+  font-size:28px;
   margin-bottom:10px;
+  text-shadow:
+    0 0 15px #fff,
+    0 0 40px #ff69b4,
+    0 0 90px #ff1493;
+  animation:glowText 2s infinite alternate;
+}
+@keyframes glowText{
+  0%{text-shadow:0 0 20px #fff,0 0 40px #ff69b4,0 0 80px #ff1493}
+  100%{text-shadow:0 0 50px #fff,0 0 120px #ff69b4,0 0 200px #ff1493}
 }
 
+/* QUESTION TEXT */
 #question{
   font-size:18px;
-  color:#ff2e63;
-  font-weight:600;
+  color:#ff1493;
+  font-weight:700;
   min-height:30px;
+  margin-bottom:20px;
 }
 
-.buttons{margin-top:25px}
+/* BUTTONS */
+.buttons{margin-top:30px}
 
 button{
   margin:10px;
-  padding:15px 38px;
+  padding:16px 40px;
   border:none;
   border-radius:50px;
   font-size:16px;
@@ -91,55 +110,57 @@ button{
 }
 
 .yes{
-  background:#ff2e63;
+  background:linear-gradient(135deg,#ff69b4,#ff1493,#ff87a2);
   color:white;
-  box-shadow:0 0 35px rgba(255,46,99,.9);
+  box-shadow:0 0 40px #ff69b4,0 0 90px #ff1493,0 0 150px #ff87a2;
   animation:glow 2s infinite;
 }
-
 @keyframes glow{
-  50%{box-shadow:0 0 60px rgba(255,46,99,1)}
+  0%{box-shadow:0 0 20px #ff69b4,0 0 50px #ff1493,0 0 80px #ff87a2}
+  50%{box-shadow:0 0 70px #ff69b4,0 0 150px #ff1493,0 0 200px #ff87a2}
+  100%{box-shadow:0 0 20px #ff69b4,0 0 50px #ff1493,0 0 80px #ff87a2}
 }
 
 .no{
   background:#eee;
   position:relative;
+  color:#333;
 }
 
-button:hover{transform:scale(1.1)}
+button:hover{transform:scale(1.15)}
 
+/* MESSAGE AFTER YES */
 #msg{
   margin-top:25px;
   font-size:22px;
-  color:#ff2e63;
-  font-weight:600;
+  color:#ff1493;
+  font-weight:700;
   opacity:0;
   transform:scale(.8);
   transition:1s;
 }
 
-.rose,.heart{
+/* PARTICLES */
+.rose,.heart,.spark{
   position:fixed;
-  top:-50px;
-  font-size:30px;
-  animation:fall linear forwards;
   pointer-events:none;
 }
 
-.sparkle{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:white;
-  border-radius:50%;
-  animation:spark 1s forwards;
+.heart,.rose{
+  font-size:30px;
+  animation:fall linear forwards;
 }
-
 @keyframes fall{
   to{transform:translateY(110vh) rotate(360deg);opacity:0}
 }
 
-@keyframes spark{
+.spark{
+  width:6px;height:6px;
+  background:white;
+  border-radius:50%;
+  animation:sparkAnim 1s forwards;
+}
+@keyframes sparkAnim{
   to{transform:translateY(-30px);opacity:0}
 }
 </style>
@@ -166,7 +187,7 @@ button:hover{transform:scale(1.1)}
 // sparkle cursor
 document.addEventListener('mousemove',e=>{
   let s=document.createElement('div');
-  s.className='sparkle';
+  s.className='spark';
   s.style.left=e.clientX+'px';
   s.style.top=e.clientY+'px';
   document.body.appendChild(s);
@@ -179,10 +200,11 @@ setInterval(()=>{
   r.className=Math.random()>.5?'rose':'heart';
   r.innerText=Math.random()>.5?'🌹':'💖';
   r.style.left=Math.random()*100+'vw';
-  r.style.animationDuration=(3+Math.random()*3)+'s';
+  r.style.fontSize=(20+Math.random()*40)+'px';
+  r.style.animationDuration=(2+Math.random()*3)+'s';
   document.body.appendChild(r);
-  setTimeout(()=>r.remove(),6000);
-},400);
+  setTimeout(()=>r.remove(),5000);
+},300);
 
 // night mode
 let dark=false;
@@ -190,7 +212,7 @@ night.onclick=()=>{
   dark=!dark;
   document.body.style.background=dark
    ?'linear-gradient(135deg,#0f2027,#203a43,#2c5364)'
-   :'linear-gradient(270deg,#fbc2eb,#a6c1ee,#fad0c4,#ffd1ff)';
+   :'linear-gradient(270deg,#ffb6c1,#ff69b4,#ff1493,#ff87a2)';
 };
 
 // romantic + funny questions
@@ -212,18 +234,17 @@ function yes(){
   msg.style.opacity=1;
   msg.style.transform='scale(1)';
 
-  // mega explosion of hearts
-  for(let i=0;i<150;i++){
+  for(let i=0;i<180;i++){
     setTimeout(()=>{
       let h=document.createElement('div');
       h.className=Math.random()>.5?'heart':'rose';
       h.innerText=Math.random()>.5?'💖':'🌹';
       h.style.left=Math.random()*100+'vw';
-      h.style.fontSize=(20+Math.random()*50)+'px'; // bigger hearts
-      h.style.animationDuration=(1+Math.random()*3)+'s'; 
+      h.style.fontSize=(25+Math.random()*60)+'px';
+      h.style.animationDuration=(1+Math.random()*3)+'s';
       document.body.appendChild(h);
-      setTimeout(()=>h.remove(),4000);
-    },i*20);
+      setTimeout(()=>h.remove(),5000);
+    },i*15);
   }
 }
 
