@@ -107,12 +107,11 @@ body{
   text-shadow:0 0 15px #fff;
 }
 
-/* Bottom Button */
+/* Bottom Button (options ke neeche) */
 .bottom-link{
-  position:absolute;
-  bottom:60px;
-  left:50%;
-  transform:translateX(-50%);
+  position: relative;  /* absolute se relative */
+  margin-top:50px;     /* options ke neeche gap */
+  text-align:center;   /* center align */
 }
 
 .bottom-link button{
@@ -168,12 +167,13 @@ body{
 <div class="options-wrapper">
   <div class="row" id="row1"></div>
   <div class="row" id="row2"></div>
-</div>
 
-<div class="bottom-link">
-  <a href="ghulam.html">
-    <button>Ghulami ❤️</button>
-  </a>
+  <!-- Button ab options ke neeche hai -->
+  <div class="bottom-link">
+    <a href="ghulam.html">
+      <button>Ghulami ❤️</button>
+    </a>
+  </div>
 </div>
 
 <script>
