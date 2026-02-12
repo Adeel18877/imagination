@@ -86,16 +86,21 @@ h1{
   font-weight:600;
   color:#ff2e63;
   text-shadow:0 0 10px #ffd1dc;
+  font-size:18px;
 }
 
 #line{
   font-size:18px;
   min-height:40px;
+  color:#ff2e63;
+  text-shadow:0 0 12px #ffb0c4;
 }
+
 #question{
   color:#ff2e63;
   font-weight:600;
   margin-top:8px;
+  text-shadow:0 0 10px #ffb0c4;
 }
 
 /* BUTTONS */
@@ -109,12 +114,18 @@ button{
   padding:14px 32px;
   border:none;
   border-radius:50px;
-  background:#ff2e63;
+  background:linear-gradient(45deg,#ff2e63,#ff7aa2);
   color:white;
   font-size:15px;
   cursor:pointer;
   box-shadow:0 0 35px rgba(255,46,99,.9);
   animation:beat 1.6s infinite;
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.15);
+  box-shadow:0 0 60px #ff2e63,0 0 120px #ff7aa2;
 }
 
 @keyframes beat{
@@ -192,7 +203,7 @@ button{
 
   <div class="buttons">
     <button onclick="back()">⬅ Back</button>
-    <button onclick="next()">Ghulami 💖</button>
+    <button onclick="next()">Our Dictionary 💕</button>
   </div>
 </div>
 
@@ -293,7 +304,7 @@ night.onclick=()=>{
 
 /* NAVIGATION */
 function back(){location.href="index.html"}
-function next(){location.href="ghulam.html"}  // ← Updated
+function next(){location.href="private.html"}  // ← Updated
 </script>
 
 </body>
