@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Manahil</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Playfair+Display:ital,wght@0,500;0,700;1,600&family=Marcellus&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --burgundy-dark:#3B0A14;
+    --rose-deep:#7A1F3D;
+    --blush:#F4C6D0;
+    --gold:#D4A857;
+    --cream:#FFF6EE;
+    --soft-red:#C1445E;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background: linear-gradient(180deg, var(--burgundy-dark) 0%, var(--rose-deep) 55%, var(--burgundy-dark) 100%);
+    color: var(--cream);
+    font-family:'Cormorant Garamond', serif;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.001s !important; animation-iteration-count:1 !important; transition-duration:0.001s !important; }
+  }
+
+  /* ---------- floating petals ---------- */
+  .petals{ position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden; }
+  .petal{
+    position:absolute; top:-5%;
+    width:14px; height:14px;
+    background: radial-gradient(circle at 30% 30%, var(--blush), var(--soft-red));
+    border-radius: 0 50% 50% 50%;
+    opacity:0.55;
+    animation: fall linear infinite;
+  }
+  @keyframes fall{
+    0%{ transform: translateY(0) rotate(0deg); }
+    100%{ transform: translateY(110vh) rotate(300deg); }
+  }
+
+  section{ position:relative; z-index:2; padding: 6rem 1.5rem; max-width: 860px; margin:0 auto; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:100svh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding-top:2rem;
+  }
+  .eyebrow{
+    font-family:'Marcellus', serif;
+    letter-spacing:0.35em;
+    text-transform:uppercase;
+    font-size:0.75rem;
+    color: var(--gold);
+    margin-bottom:1.25rem;
+  }
+  .hero h1{
+    font-family:'Playfair Display', serif;
+    font-weight:700;
+    font-size: clamp(3rem, 12vw, 7rem);
+    line-height:1;
+    background: linear-gradient(180deg, var(--cream), var(--blush));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    letter-spacing:0.01em;
+  }
+  .hero .tagline{
+    margin-top:1.25rem;
+    font-style:italic;
+    font-size:1.35rem;
+    color: var(--blush);
+    max-width:32ch;
+  }
+
+  .countdown-label{
+    margin-top:3.5rem;
+    font-family:'Marcellus', serif;
+    letter-spacing:0.25em;
+    text-transform:uppercase;
+    font-size:0.75rem;
+    color: var(--gold);
+  }
+  .countdown{
+    display:flex; gap: clamp(0.75rem, 3vw, 2rem);
+    margin-top:1.25rem;
+  }
+  .countdown .unit{
+    display:flex; flex-direction:column; align-items:center;
+    min-width:64px;
+  }
+  .countdown .num{
+    font-family:'Playfair Display', serif;
+    font-size: clamp(1.8rem, 6vw, 2.8rem);
+    color: var(--cream);
+    font-variant-numeric: tabular-nums;
+  }
+  .countdown .unit-label{
+    font-size:0.7rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color: var(--blush);
+    opacity:0.8;
+    margin-top:0.3rem;
+  }
+  .countdown-arrived{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color: var(--gold);
+  }
+
+  .scroll-hint{
+    margin-top:4rem;
+    width:1px; height:50px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse{ 0%,100%{ opacity:0.3;} 50%{ opacity:1;} }
+
+  /* ---------- divider ---------- */
+  .divider{
+    display:flex; align-items:center; gap:1rem;
+    max-width:860px; margin: 0 auto; padding: 0 1.5rem;
+  }
+  .divider .line{ flex:1; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .divider .mark{ color: var(--gold); font-size:1.1rem; }
+
+  /* ---------- letter ---------- */
+  .letter-wrap{ text-align:center; }
+  .section-eyebrow{
+    font-family:'Marcellus', serif;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+    font-size:0.75rem;
+    color: var(--gold);
+    display:block;
+    margin-bottom:1rem;
+  }
+  .section-title{
+    font-family:'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom:2.5rem;
+  }
+
+  .envelope{
+    max-width:600px; margin:0 auto;
+    cursor:pointer;
+    perspective:1200px;
+  }
+  .envelope-body{
+    position:relative;
+    background: linear-gradient(160deg, var(--rose-deep), var(--burgundy-dark));
+    border:1px solid rgba(212,168,87,0.4);
+    border-radius:6px;
+    padding: 3rem 2rem;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+    transition: transform 0.4s ease;
+  }
+  .envelope:hover .envelope-body{ transform: translateY(-4px); }
+  .seal{
+    width:56px; height:56px;
+    border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, var(--soft-red), #7A0E23);
+    margin:0 auto 1.25rem;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Playfair Display', serif;
+    font-size:1.3rem;
+    color: var(--gold);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.4), inset 0 0 0 2px rgba(212,168,87,0.5);
+  }
+  .envelope-hint{
+    font-style:italic; color: var(--blush); font-size:1.1rem;
+  }
+
+  .letter-content{
+    max-width:600px; margin: 2rem auto 0;
+    text-align:left;
+    background: rgba(0,0,0,0.15);
+    border:1px solid rgba(212,168,87,0.25);
+    border-radius:6px;
+    padding: 2.5rem 2rem;
+    font-size:1.3rem;
+    line-height:1.85;
+    display:none;
+  }
+  .letter-content.open{ display:block; animation: unfold 0.6s ease; }
+  @keyframes unfold{ from{ opacity:0; transform: translateY(12px);} to{ opacity:1; transform:translateY(0);} }
+  .letter-content p{ margin-bottom:1.2rem; }
+  .signature{
+    font-family:'Playfair Display', serif;
+    font-style:italic;
+    font-size:1.6rem;
+    color: var(--gold);
+    text-align:right;
+    margin-top:1.5rem;
+  }
+
+  /* ---------- gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap:1rem;
+    margin-top:1rem;
+  }
+  .photo-slot{
+    aspect-ratio: 4/5;
+    border-radius:6px;
+    background: linear-gradient(150deg, rgba(212,168,87,0.15), rgba(122,31,61,0.4));
+    border:1px dashed rgba(212,168,87,0.5);
+    display:flex; align-items:center; justify-content:center;
+    text-align:center;
+    padding:1rem;
+    font-family:'Marcellus', serif;
+    font-size:0.85rem;
+    letter-spacing:0.05em;
+    color: var(--blush);
+  }
+  .photo-slot span{ opacity:0.75; }
+  @media (max-width: 560px){
+    .gallery-grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  .gallery-note{
+    margin-top:1.5rem;
+    font-style:italic;
+    font-size:1rem;
+    color: var(--blush);
+    opacity:0.8;
+    text-align:center;
+  }
+  .gallery-note code{
+    font-family:monospace;
+    background: rgba(0,0,0,0.25);
+    padding:0.1rem 0.4rem;
+    border-radius:3px;
+  }
+
+  /* ---------- music ---------- */
+  .music-player{
+    position:fixed;
+    bottom:1.5rem; right:1.5rem;
+    z-index:10;
+    display:flex; align-items:center; gap:0.75rem;
+    background: rgba(59,10,20,0.85);
+    backdrop-filter: blur(6px);
+    border:1px solid rgba(212,168,87,0.4);
+    border-radius:999px;
+    padding:0.6rem 1.1rem 0.6rem 0.6rem;
+  }
+  .music-toggle{
+    width:42px; height:42px;
+    border-radius:50%;
+    border:none;
+    background: linear-gradient(150deg, var(--gold), var(--soft-red));
+    color: var(--burgundy-dark);
+    font-size:1.1rem;
+    cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .music-label{ font-family:'Marcellus', serif; font-size:0.8rem; color: var(--blush); }
+
+  footer{
+    text-align:center;
+    padding: 3rem 1.5rem 5rem;
+    font-family:'Marcellus', serif;
+    font-size:0.8rem;
+    letter-spacing:0.15em;
+    text-transform:uppercase;
+    color: var(--gold);
+    opacity:0.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="petals" id="petals"></div>
+
+<section class="hero">
+  <span class="eyebrow">A little corner of the internet, just for you</span>
+  <h1>Manahil</h1>
+  <p class="tagline">Every year with you is my favourite one yet.</p>
+
+  <div id="countdownBlock">
+    <div class="countdown-label" id="countdownLabel">Counting down to your day</div>
+    <div class="countdown" id="countdown">
+      <div class="unit"><div class="num" id="days">--</div><div class="unit-label">Days</div></div>
+      <div class="unit"><div class="num" id="hours">--</div><div class="unit-label">Hours</div></div>
+      <div class="unit"><div class="num" id="mins">--</div><div class="unit-label">Mins</div></div>
+      <div class="unit"><div class="num" id="secs">--</div><div class="unit-label">Secs</div></div>
+    </div>
+  </div>
+
+  <div class="scroll-hint"></div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="mark">♥</div><div class="line"></div></div>
+
+<section class="letter-wrap">
+  <span class="section-eyebrow">Read when ready</span>
+  <h2 class="section-title">A letter for you</h2>
+
+  <div class="envelope" id="envelope">
+    <div class="envelope-body">
+      <div class="seal">M</div>
+      <p class="envelope-hint">Tap to open</p>
+    </div>
+  </div>
+
+  <div class="letter-content" id="letterContent">
+    <p>My Manahil,</p>
+    <p>Some people search their whole lives for the kind of calm you bring me without even trying. You have a way of making ordinary days feel like they matter, and that's a rare gift I don't take for granted.</p>
+    <p>Today isn't just about the day you were born — it's a reminder of every reason I'm grateful you exist. Your laugh, your patience with me, the way you care for the people around you — all of it makes my world better.</p>
+    <p>I hope this year brings you everything you deserve, and I hope you never forget how loved you are, today and always.</p>
+    <p class="signature">— Adeel</p>
+  </div>
+</section>
+
+<div class="divider"><div class="line"></div><div class="mark">♥</div><div class="line"></div></div>
+
+<section>
+  <div style="text-align:center;">
+    <span class="section-eyebrow">Little moments</span>
+    <h2 class="section-title">Our memories</h2>
+  </div>
+  <div class="gallery-grid">
+    <div class="photo-slot"><span>Add a photo here</span></div>
+    <div class="photo-slot"><span>Add a photo here</span></div>
+    <div class="photo-slot"><span>Add a photo here</span></div>
+    <div class="photo-slot"><span>Add a photo here</span></div>
+    <div class="photo-slot"><span>Add a photo here</span></div>
+    <div class="photo-slot"><span>Add a photo here</span></div>
+  </div>
+  <p class="gallery-note">Adeel — replace each <code>.photo-slot</code> with an <code>&lt;img src="your-photo.jpg"&gt;</code> tag once you have the files. I've left the spots ready for you.</p>
+</section>
+
+<footer>Made with love, for the one who deserves it most</footer>
+
+<div class="music-player">
+  <button class="music-toggle" id="musicToggle" aria-label="Play music">♪</button>
+  <span class="music-label" id="musicLabel">Add her song</span>
+</div>
+<audio id="bgAudio" loop preload="none">
+  <!-- Adeel: put your own audio file (e.g. her-song.mp3) next to this HTML file
+       and set the src below, e.g. <source src="her-song.mp3" type="audio/mpeg"> -->
+</audio>
+
+<script>
+  // ---------- floating petals ----------
+  const petalContainer = document.getElementById('petals');
+  const petalCount = window.innerWidth < 600 ? 12 : 22;
+  for(let i=0;i<petalCount;i++){
+    const p = document.createElement('div');
+    p.className='petal';
+    p.style.left = Math.random()*100 + 'vw';
+    p.style.animationDuration = (8 + Math.random()*10) + 's';
+    p.style.animationDelay = (Math.random()*10) + 's';
+    p.style.transform = `scale(${0.6 + Math.random()*0.8})`;
+    petalContainer.appendChild(p);
+  }
+
+  // ---------- countdown to next Aug 2 ----------
+  function getNextBirthday(){
+    const now = new Date();
+    let year = now.getFullYear();
+    let target = new Date(year, 7, 2, 0,0,0); // August is month index 7
+    if(target < now){
+      target = new Date(year+1, 7, 2, 0,0,0);
+    }
+    return target;
+  }
+
+  function updateCountdown(){
+    const now = new Date();
+    const target = getNextBirthday();
+    const diff = target - now;
+
+    const isBirthdayToday = now.getMonth()===7 && now.getDate()===2;
+
+    if(isBirthdayToday){
+      document.getElementById('countdownBlock').innerHTML =
+        '<div class="countdown-arrived">It\'s her day. Happy Birthday, Manahil ♥</div>';
+      return;
+    }
+
+    const d = Math.floor(diff / (1000*60*60*24));
+    const h = Math.floor((diff / (1000*60*60)) % 24);
+    const m = Math.floor((diff / (1000*60)) % 60);
+    const s = Math.floor((diff / 1000) % 60);
+
+    document.getElementById('days').textContent = d;
+    document.getElementById('hours').textContent = String(h).padStart(2,'0');
+    document.getElementById('mins').textContent = String(m).padStart(2,'0');
+    document.getElementById('secs').textContent = String(s).padStart(2,'0');
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  // ---------- envelope open ----------
+  document.getElementById('envelope').addEventListener('click', function(){
+    const content = document.getElementById('letterContent');
+    content.classList.toggle('open');
+    this.style.display = content.classList.contains('open') ? 'none' : 'block';
+  });
+
+  // ---------- music toggle ----------
+  const audio = document.getElementById('bgAudio');
+  const toggle = document.getElementById('musicToggle');
+  const label = document.getElementById('musicLabel');
+  let playing = false;
+  toggle.addEventListener('click', function(){
+    if(!audio.querySelector('source')){
+      label.textContent = 'Add an mp3 file first';
+      return;
+    }
+    if(playing){ audio.pause(); toggle.textContent='♪'; label.textContent='Play her song'; }
+    else{ audio.play(); toggle.textContent='❚❚'; label.textContent='Playing...'; }
+    playing = !playing;
+  });
+</script>
+
+</body>
+</html>
